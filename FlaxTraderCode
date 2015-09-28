@@ -1,0 +1,200 @@
+print ("\n\nFlax Trader 1.0\n\n")
+print ("\t\tBy Brady")
+raw_input()
+
+import random
+
+flax_price = random.randint(1, 10)
+inventory = 0
+cash = random.randint(20, 100)
+flax_inv = 0
+
+# space() for three enters
+def space():
+    print ("")
+    print ("")
+    print ("")
+
+
+#Option 1: Look Around
+def look_around():
+    look = random.randint(1, 5)
+    if look == 1:
+        print ("It's a fine day for flax!")
+    if look == 2:
+        print ("Beautiful flax weather!")
+    if look == 3:
+        print ("Not every day seems so auspicious... for flax!")
+    if look == 4:
+        print ("It's not a good day for flax.  It's a GREAT day for flax!")
+    if look == 5:
+        print ("Flaxin' ain't easy [but it's necessary].")
+    space()
+    main_menu()
+
+
+#Option 2:  Price Check
+def price_check():
+    print ("""You check the latest flax prices off the ticker. \n A man in a waistcoat leans over as you read it.""")
+    print ("Flax is currently going for $%s per bushel.") % ( flax_price)
+    if flax_price > 7:
+        print ("'It's really a seller's market right now.' he says.")
+    if flax_price < 3:
+        print ("""'Market has bottomed right out. Saw some flax traders
+               go tumbling past the window this morning. Very emotional lot,
+               these flax traders,' he says.""")
+
+    space()
+    main_menu()
+
+
+#Option 3: Buy
+def buy():
+
+    # must get cash and flax_inv, global variables, into the function
+
+    global cash
+    global flax_inv
+    print ("""A sharply dressed man with a mustache greets you.  'So you want to buy some flax, eh? It costs $%s per bushel.'""") % (flax_price)
+    print ("You have $%s.") % (cash)
+    possible_flax = (cash / flax_price)
+    print ("You could buy a maximum of "), possible_flax, ("bushels.")
+    bought_flax = int(raw_input("How many bushels would you like to buy? "
+                        ""
+                        ""))
+    if bought_flax <= possible_flax:
+        print ("You bought %s bushels of flax.") % (bought_flax)
+    if bought_flax > possible_flax:
+        bought_flax = 0
+        print ("You do not have enough money for that much flax. Too bad!")
+        buy()
+    flax_inv += bought_flax
+    cash -= (bought_flax * flax_price)
+    print ("You now have %s bushels of flax and $%s") % (flax_inv, cash)
+    space()
+    main_menu()
+
+
+
+#Option 4: Sell
+def sell():
+    global cash
+    global flax_inv
+
+    if flax_inv == 0:
+        print ("You have nothing to sell.  The flax trader with the mustache gives you a puzzled, then pitying look.")
+        print ("'Maybe come back when you have some flax to sell, friend,' he tells you gently.")
+
+    else:
+        print ("You swagger up to the flax trader with the shabby mustache, your fat flax stax giving you confidence you have never before experienced.")
+        print ("'Flax is going for $%s right now.  And a quick glance at your cart with my expert eyes tells me you have %s bushels of flax.  "\
+               "How many bushels do you want to sell, buddy?'") % (flax_price, flax_inv)
+        sold_flax = int(raw_input("Sell how many bushels?"))
+
+        if sold_flax <= flax_inv:
+            flax_inv -= sold_flax
+            cash += (sold_flax * flax_price)
+            print ("After selling the flax, you are left with $%s and %s bushels of flax.") % (cash, flax_inv)
+
+
+        else:
+            print ("""Muddy Waters said, 'you can't lose what you never had.'
+            Though in this case it's more like you can't sell flax you never owned.""")
+            sell()
+
+
+    space()
+    main_menu()
+
+
+#Option 5: Check inventory
+def check_inv():
+    print ("You currently have"), flax_inv, ("bushels of flax.")
+    print ("You currently have $"), cash,(".")
+    space()
+    main_menu()
+
+#Option 6: Wait 24 hours
+def wait():
+    global flax_price
+    global flax_inv
+    print ("You decide to wait until tomorrow.")
+    print ("You lay right down on the trading floor, pull out your emergency pillow, and drift off to sleep.")
+    print ("...")
+    raw_input()
+    print ("ZZZZzzzzzz")
+    raw_input()
+    sleep_number = random.randint(1,10)
+    if sleep_number < 3 and flax_inv > 1:
+        print("""BUzzzzzZZZZzzzzzz
+        You wake with a start. You have heard this sound before.
+        It is the dreaded Lesser Flax Weevil! A whole swarm of them!
+        They devour your flax in an instant, release a collective buggy belch,
+        and depart.""")
+        print ("""Combing through the slobbery remains in the morning,
+               you find only a single bushel of flax intact.""")
+        flax_inv = 1
+
+    if sleep_number >= 3 and sleep_number <= 8:
+        print ("""You sleep through the night, and wake with a slightly sore back.
+        You reflect on th fact that sleeping on commodities exchange floors is not
+        recommended by most chiropracters.""")
+
+    if sleep_number > 8:
+        flax_inv += 5
+        print ("""You wake in the night to the sight of several tiny men in pointed caps.
+        They are singing a cheery tune to themselves and several of them appear to be climbing
+         around on your flax wagon. You're about to hit them with your emergency pillow when you
+         realize they aren't stealing your flax... they're adding to it! You want to watch the
+         tiny little men work, but you're very sleepy.
+         In the morning, you discover they added 5 bushels to your flax supply!""")
+
+#add in help guy if you have no money or flax
+#add in the "tooth fairy" who offers to sell you teeth
+
+
+    flax_price = random.randint(1, 10)
+    space()
+    main_menu()
+
+
+#main_menu will be basecamp
+
+def main_menu():
+    print ("MAIN MENU\n")
+    print ("\t 1. Look Around")
+    print ("\t 2. Check Price")
+    print ("\t 3. Buy")
+    print ("\t 4. Sell")
+    print ("\t 5. Check inventory")
+    print ("\t 6. Wait until tomorrow")
+    press = raw_input("\nPlease press 1,2,3, 4, 5, or 6:  ")
+    if press == "1":
+        space()
+        look_around()
+    elif press == "2":
+        space()
+        price_check()
+    elif press == "3":
+        space()
+        buy()
+    elif press == "4":
+        space()
+        sell()
+    elif press == "5":
+        check_inv()
+        space()
+    elif press == "6":
+        wait()
+        space()
+
+    else:
+        print ("\nThat is not a number between 1 and 6. \n\nTry again.")
+        space()
+        main_menu()
+
+main_menu()
+
+
+
+
