@@ -3,7 +3,7 @@ print ("\t\tBy Brady")
 raw_input()
 
 import random
-
+#BEEFBEEFBEEF
 flax_price = random.randint(1, 10)
 inventory = 0
 cash = random.randint(20, 100)
