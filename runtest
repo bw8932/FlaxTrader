@@ -11,6 +11,7 @@ inventory = 0
 cash = random.randint(20, 100)
 cash = 501
 flax_inv = 0
+location = 1
 
 # space() for three enters
 def space():
@@ -21,6 +22,14 @@ def space():
 
 #Option 1: Look Around
 def look_around():
+    if location == 1:
+        print ("You are in beautiful Toronto, Moose Capital of the world!")
+    if location == 2:
+        print ("The Chicago streets bustle with activity and sizzling sausage.")
+    if location == 3:
+        print ("London: A city under siege by ferocious be-hatted beefeaters.")
+    if location == 4:
+        print ("The air is rich with the smell of fresh-baked Parisian bread and fresher-baked Parisian ennui.")
     look = random.randint(1, 5)
     if look == 1:
         print ("It's a fine day for flax!")
@@ -38,12 +47,12 @@ def look_around():
 
 #Option 2:  Price Check
 def price_check():
-    print ("""You check the latest flax prices off the ticker. \n A man in a waistcoat leans over as you read it.""")
+    print ("You check the latest flax prices off the ticker.")
     print ("Flax is currently going for $%s per bushel.") % ( flax_price)
     if flax_price > 7:
-        print ("'It's really a seller's market right now.' he says.")
+        print ("A man in a waistcoat leans over conspiratorily. 'It's really a seller's market right now.' he says.")
     if flax_price < 3:
-        print ("""'Market has bottomed right out. Saw some flax traders
+        print ("""A man in a waistcoat tuts sadly. 'Market has bottomed right out. Saw some flax traders
                go tumbling past the window this morning. Very emotional lot,
                these flax traders,' he says.""")
 
@@ -186,6 +195,59 @@ recommended by most chiropracters.""")
     space()
     main_menu()
 
+#option 7: Travel
+
+def travel():
+
+    global location
+    global flax_price
+
+    print ("You head to the airport. Available locations are:")
+    print ("1. Toronto")
+    if location == 1:
+        print ("\t[You are here]")
+    print ("2. Chicago")
+    if location == 2:
+        print ("\t[You are here]")
+    print ("3. London")
+    if location == 3:
+        print ("\t[You are here]")
+    print ("4. Paris")
+    if location == 4:
+        print ("\t[You are here]")
+    destination = int(raw_input("Where would you like to go? (1,2,3, or 4)"))
+
+    if destination == location:
+        print ("Wherever you go, there you are. But you are already there. So you cannot go there.")
+        raw_input()
+        travel()
+    elif destination == 1 or destination == 2 or destination == 3 or destination == 4:
+        print ("You board a plane.")
+        print ("VROOOOOOOOM! It is a big noisy metal bird.")
+        print ("...")
+        raw_input()
+        print ("...")
+        location = destination
+        print ("You arrive in sunny")
+        if location == 1:
+            print ("Toronto")
+        if location == 2:
+            print ("Chicago")
+        if location == 3:
+            print ("London")
+        if location == 4:
+            print ("Paris")
+
+#change flax price on travel
+        flax_price = random.randint(1, 10)
+
+    else:
+        print ("That was not a number between 1 and 4. Try again.")
+        raw_input()
+        travel()
+
+
+
 
 #main_menu will be basecamp
 
@@ -197,6 +259,7 @@ def main_menu():
     print ("\t 4. Sell")
     print ("\t 5. Check inventory")
     print ("\t 6. Wait until tomorrow")
+    print ("\t 7. Travel")
     press = raw_input("\nPlease press 1,2,3, 4, 5, or 6:  ")
     if press == "1":
         space()
@@ -215,6 +278,9 @@ def main_menu():
         space()
     elif press == "6":
         wait()
+        space()
+    elif press == "7":
+        travel()
         space()
 
     else:
