@@ -1,12 +1,15 @@
+__author__ = 'Jennifer'
 print ("\n\nFlax Trader 1.0\n\n")
 print ("\t\tBy Brady")
 raw_input()
 
 import random
-#BEEFBEEFBEEF
+
+monocle = 0
 flax_price = random.randint(1, 10)
 inventory = 0
 cash = random.randint(20, 100)
+cash = 501
 flax_inv = 0
 
 # space() for three enters
@@ -15,7 +18,7 @@ def space():
     print ("")
     print ("")
 
-fdasklfj
+
 #Option 1: Look Around
 def look_around():
     look = random.randint(1, 5)
@@ -118,6 +121,7 @@ def check_inv():
 def wait():
     global flax_price
     global flax_inv
+    global monocle
     print ("You decide to wait until tomorrow.")
     print ("You lay right down on the trading floor, pull out your emergency pillow, and drift off to sleep.")
     print ("...")
@@ -135,11 +139,6 @@ def wait():
                you find only a single bushel of flax intact.""")
         flax_inv = 1
 
-    if sleep_number >= 3 and sleep_number <= 8:
-        print ("""You sleep through the night, and wake with a slightly sore back.
-        You reflect on th fact that sleeping on commodities exchange floors is not
-        recommended by most chiropracters.""")
-
     if sleep_number > 8:
         flax_inv += 5
         print ("""You wake in the night to the sight of several tiny men in pointed caps.
@@ -148,11 +147,41 @@ def wait():
          realize they aren't stealing your flax... they're adding to it! You want to watch the
          tiny little men work, but you're very sleepy.
          In the morning, you discover they added 5 bushels to your flax supply!""")
+    elif cash > 500 and monocle == 0:
+        print ("""Just before you drift off to sleep, a slender man with a tuxedo and monocle
+        approaches you. 'Good to see a fellow richguy in the business,' he says approvingly.
+        'I'd like to invite you to join the monocle club, where we trade in only the finest flax.'
+        He hands you a beautiful black velvet box, and, when you look up from it, you see that he has disappeared.""")
+        open_box1 = raw_input("Open velvet box? y/n")
+        if open_box1 == "y" or open_box1 == "Y":
+                print ("You pop open the box to reveal... a smaller mahogany case! So luxurious; his tree did not die in vain.")
+                open_box2 = raw_input("Open mahogany case? y/n")
+                if open_box2 == "y" or open_box2 == "Y":
+                    print ("You unseal the mahogany case to reveal... a silvery bag. It shimmers in the light.")
+                    open_box3 = raw_input("Open silver bag? y/n")
+                    if open_box3 == "y" or open_box3 == "Y":
+                        print ("You open the silvery bag to reveal... a monocle! On a golden chain.")
+                        print ("It's a bit flashy, but when you pop it on, it fits just fine.")
+                        monocle = 1
+                    else:
+                        print ("""It's a lovely shiny bag. No sense spoiling it by digging around inside with
+                               your dirty hands.""")
+                else:
+                    print ("Best to leave that case safely closed.  It's prettier this way!")
+
+        else:
+                print ("You wisely elect to leave the box sealed. No telling what horrors lurk inside it.")
+
+
+    else:
+        print ("""You sleep through the night, and wake with a slightly sore back.
+You reflect on the fact that sleeping on commodities exchange floors is not
+recommended by most chiropracters.""")
 
 #add in help guy if you have no money or flax
 #add in the "tooth fairy" who offers to sell you teeth
 
-
+#daily flax price adjustment
     flax_price = random.randint(1, 10)
     space()
     main_menu()
