@@ -11,13 +11,13 @@ inventory = 0
 cash = random.randint(20, 100)
 cash = 501
 flax_inv = 0
-location = 1
 
 # space() for three enters
 def space():
     print ("")
     print ("")
     print ("")
+
 
 #Option 1: Look Around
 def look_around():
