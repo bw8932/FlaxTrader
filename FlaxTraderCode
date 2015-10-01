@@ -15,7 +15,7 @@ def space():
     print ("")
     print ("")
 
-
+fdasklfj
 #Option 1: Look Around
 def look_around():
     look = random.randint(1, 5)
