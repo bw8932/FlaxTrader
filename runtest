@@ -30,17 +30,7 @@ def look_around():
         print ("London: A city under siege by ferocious be-hatted beefeaters.")
     if location == 4:
         print ("The air is rich with the smell of fresh-baked Parisian bread and fresher-baked Parisian ennui.")
-    look = random.randint(1, 5)
-    if look == 1:
-        print ("It's a fine day for flax!")
-    if look == 2:
-        print ("Beautiful flax weather!")
-    if look == 3:
-        print ("Not every day seems so auspicious... for flax!")
-    if look == 4:
-        print ("It's not a good day for flax.  It's a GREAT day for flax!")
-    if look == 5:
-        print ("Flaxin' ain't easy [but it's necessary].")
+
     space()
     main_menu()
 
@@ -201,8 +191,10 @@ def travel():
 
     global location
     global flax_price
+    global cash
 
-    print ("You head to the airport. Available locations are:")
+    print ("You head to the airport. FlaxAir is having a special sale, and all one-way tickets are currently 20 dollars!")
+    print ("Available destinations are:")
     print ("1. Toronto")
     if location == 1:
         print ("\t[You are here]")
@@ -222,7 +214,7 @@ def travel():
         raw_input()
         travel()
     elif destination == 1 or destination == 2 or destination == 3 or destination == 4:
-        print ("You board a plane.")
+        print ("You pay the skycaptain your fare and board the plane.")
         print ("VROOOOOOOOM! It is a big noisy metal bird.")
         print ("...")
         raw_input()
@@ -240,6 +232,13 @@ def travel():
 
 #change flax price on travel
         flax_price = random.randint(1, 10)
+#charge 20 dollars
+        cash -= 20
+
+
+        space()
+        main_menu()
+
 
     else:
         print ("That was not a number between 1 and 4. Try again.")
