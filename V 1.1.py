@@ -1,5 +1,5 @@
 __author__ = 'Jennifer'
-print ("\n\nFlax Trader 1.0\n\n")
+print ("\n\nFlax Trader 1.1\n\n")
 print ("\t\tBy Brady")
 raw_input()
 
@@ -42,6 +42,8 @@ def initial_inv():
     cash = random.randint(20,100)
 initial_inv()
 
+cash = 10000
+
 # space() for three enters
 def space():
     print ("")
@@ -83,15 +85,6 @@ def buy():
 
     # must get cash and flax_inv, global variables, into the function
 
-    global cash
-    global flax_inv
-    global oat_inv
-    global wheat_inv
-    global barley_inv
-    global coffee_inv
-
-
-
     print ("""A sharply dressed man with a mustache greets you.  'So you want to buy some commodities, eh?
     Maybe some nice flax? Here's the price situation:""")
 
@@ -106,63 +99,328 @@ def buy():
     print ("You have $%s.") % (cash)
 
     buy_choice = int(raw_input("What would you like to buy?[1-5]"))
-
+#flax buy
     if buy_choice == 1:
-        possible_flax = (cash / flax_price)
-        print ("You could buy a maximum of "), possible_flax, ("bushels of flax.")
-        bought_flax = int(raw_input("How many bushels would you like to buy? "
+        flax_buy()
+        main_menu()
+
+#oat buy
+    if buy_choice == 2:
+        oat_buy()
+        main_menu()
+
+# wheat buy
+    if buy_choice == 3:
+        wheat_buy()
+        main_menu()
+
+#barley buy
+    if buy_choice == 4:
+        barley_buy()
+        main_menu()
+
+#coffee buy
+    if buy_choice == 5:
+        coffee_buy()
+        main_menu()
+
+    else:
+        print ("That is not an option on offer.")
+        buy()
+
+
+#flax_buy function
+def flax_buy():
+    global cash
+    global flax_inv
+    global bought_flax
+    possible_flax = (cash / flax_price)
+    print ("You could buy a maximum of "), possible_flax, ("bushels of flax.")
+    bought_flax = int(raw_input("How many bushels would you like to buy? "
                         ""
                         ""))
-        if bought_flax <= possible_flax:
-            print ("You bought %s bushels of flax.") % (bought_flax)
-        if bought_flax > possible_flax:
-            bought_flax = 0
-            print ("You do not have enough money for that much flax. Too bad!")
-            buy()
+    if bought_flax <= possible_flax:
+        print ("You bought %s bushels of flax.") % (bought_flax)
+    if bought_flax > possible_flax:
+        bought_flax = 0
+        print ("You do not have enough money for that much flax. Too bad!")
+        buy()
     flax_inv += bought_flax
     cash -= (bought_flax * flax_price)
     print ("You now have %s bushels of flax and $%s") % (flax_inv, cash)
 
+#oat buy
+def oat_buy():
+    global cash
+    global oat_inv
+    global bought_oat
+    possible_oat = (cash / oat_price)
+    print ("You could buy a maximum of "), possible_oat, ("bushels of oats.")
+    bought_oat = int(raw_input("How many bushels would you like to buy? "
+                        ""
+                        ""))
+    if bought_oat <= possible_oat:
+        print ("You bought %s bushels of oats") % (bought_oat)
+    if bought_oat > possible_oat:
+        bought_oat = 0
+        print ("You do not have enough money for that much oats. Too bad!")
+        buy()
+    oat_inv += bought_oat
+    cash -= (bought_oat * oat_price)
+    print ("You now have %s bushels of oat and $%s") % (oat_inv, cash)
 
-    space()
-    main_menu()
+# wheat buy
+def wheat_buy():
+    global cash
+    global wheat_inv
+    global bought_wheat
+    possible_wheat = (cash / wheat_price)
+    print ("You could buy a maximum of "), possible_wheat, ("bushels of wheat.")
+    bought_wheat = int(raw_input("How many bushels would you like to buy? "
+                        ""
+                        ""))
+    if bought_wheat <= possible_wheat:
+        print ("You bought %s bushels of wheat") % (bought_wheat)
+    if bought_wheat > possible_wheat:
+        bought_wheat = 0
+        print ("You do not have enough money for that much wheat. Too bad!")
+        buy()
+    wheat_inv += bought_wheat
+    cash -= (bought_wheat * wheat_price)
+    print ("You now have %s bushels of wheat and $%s") % (wheat_inv, cash)
 
 
+# barley buy
+def barley_buy():
+    global cash
+    global barley_inv
+    global bought_barley
+    possible_barley = (cash / barley_price)
+    print ("You could buy a maximum of "), possible_barley, ("bushels of barley.")
+    bought_barley = int(raw_input("How many bushels would you like to buy? "
+                        ""
+                        ""))
+    if bought_barley <= possible_barley:
+        print ("You bought %s bushels of barley") % (bought_barley)
+    if bought_barley > possible_barley:
+        bought_barley = 0
+        print ("You do not have enough money for that much barley. Too bad!")
+        buy()
+    barley_inv += bought_barley
+    cash -= (bought_barley * barley_price)
+    print ("You now have %s bushels of barley and $%s") % (barley_inv, cash)
+
+
+# coffee buy
+def coffee_buy():
+    global cash
+    global coffee_inv
+    global bought_coffee
+    possible_coffee = (cash / coffee_price)
+    print ("You could buy a maximum of "), possible_coffee, ("bushels of coffee.")
+    bought_coffee = int(raw_input("How many bushels would you like to buy? "
+                        ""
+                        ""))
+    if bought_coffee <= possible_coffee:
+        print ("You bought %s bushels of coffee") % (bought_coffee)
+    if bought_coffee > possible_coffee:
+        bought_coffee = 0
+        print ("You do not have enough money for that much coffee. Too bad!")
+        buy()
+    coffee_inv += bought_coffee
+    cash -= (bought_coffee * coffee_price)
+    print ("You now have %s bushels of coffee and $%s") % (coffee_inv, cash)
 
 #Option 4: Sell
+
 def sell():
+
+    # must get cash and flax_inv, global variables, into the function
     global cash
     global flax_inv
+    global oat_inv
+    global wheat_inv
+    global barley_inv
+    global coffee_inv
 
-    if flax_inv == 0:
-        print ("You have nothing to sell.  The flax trader with the mustache gives you a puzzled, then pitying look.")
-        print ("'Maybe come back when you have some flax to sell, friend,' he tells you gently.")
+    print ("""A man with a mustache greets you. 'So you want to sell some commodities, eh?
+    Wheat, perhaps? Here's the price situation:""")
+
+    print ("")
+    print ("\t1. Flax: \t$%s per bushel. You have %s bushels.") % (flax_price) (flax_inv)
+    print ("\t2. Oats: \t$%s per bushel. You have %s bushels.") % (oat_price) (oat_inv)
+    print ("\t3. Wheat: \t$%s per bushel. You have %s bushels.") % (wheat_price) (wheat_inv)
+    print ("\t4. Barley: \t$%s per bushel. You have %s bushels.") % (barley_price) (barley_inv)
+    print ("\t5. Coffee: \t$%s per bushel. You have %s bushels.") % (coffee_price) (coffee_inv)
+    print ("")
+
+    print ("You have $%s.") % (cash)
+
+    sell_choice = int(raw_input("What would you like to sell? [1-5]"))
+
+#flax sell
+    if sell_choice == 1:
+        flax_sell()
+        main_menu()
+
+#oat sell
+    if sell_choice == 2:
+        oat_sell()
+        main_menu()
+
+# wheat sell
+    if sell_choice == 3:
+        wheat_sell()
+        main_menu()
+
+#barley sell
+    if sell_choice == 4:
+        barley_sell()
+        main_menu()
+
+#coffee sell
+    if sell_choice == 5:
+        coffee_sell()
+        main_menu()
 
     else:
-        print ("You swagger up to the flax trader with the shabby mustache, your fat flax stax giving you confidence you have never before experienced.")
-        print ("'Flax is going for $%s right now.  And a quick glance at your cart with my expert eyes tells me you have %s bushels of flax.  "\
-               "How many bushels do you want to sell, buddy?'") % (flax_price, flax_inv)
-        sold_flax = int(raw_input("Sell how many bushels?"))
-
-        if sold_flax <= flax_inv:
-            flax_inv -= sold_flax
-            cash += (sold_flax * flax_price)
-            print ("After selling the flax, you are left with $%s and %s bushels of flax.") % (cash, flax_inv)
+        print ("That is not an option on offer.")
+        sell()
 
 
-        else:
-            print ("""Muddy Waters said, 'you can't lose what you never had.'
-            Though in this case it's more like you can't sell flax you never owned.""")
-            sell()
+# flax sell
+def flax_sell():
+    global cash
+    global flax_inv
+    global sold_flax
+    print ("You have"), flax_inv, ("bushels of flax available to sell.")
+    sold_flax = int(raw_input("How many bushels would you like to sell? "
+                        ""
+                        ""))
+
+    if sold_flax <= flax_inv:
+        flax_inv -= sold_flax
+        cash += (sold_flax * flax_price)
+        print ("After selling the flax, you are left with $%s and %s bushels of flax.") % (cash, flax_inv)
 
 
-    space()
-    main_menu()
+    else:
+        print ("""Muddy Waters said, 'you can't lose what you never had.'
+        Though in this case it's more like you can't sell what you never owned.""")
+        flax_sell()
+
+
+# oat sell
+def oat_sell():
+    global cash
+    global oat_inv
+    global sold_oat
+    print ("You have"), oat_inv, ("bushels of oats available to sell.")
+    sold_oat = int(raw_input("How many bushels would you like to sell? "
+                        ""
+                        ""))
+
+    if sold_oat <= oat_inv:
+        oat_inv -= sold_oat
+        cash += (sold_oat * oat_price)
+        print ("After selling the oats, you are left with $%s and %s bushels of oats.") % (cash, oat_inv)
+
+    else:
+        print ("""Muddy Waters said, 'you can't lose what you never had.'
+        Though in this case it's more like you can't sell what you never owned.""")
+        oat_sell()
+
+
+
+
+# wheat sell
+def wheat_sell():
+    global cash
+    global wheat_inv
+    global sold_wheat
+    print ("You have"), wheat_inv, ("bushels of wheat available to sell.")
+    sold_wheat = int(raw_input("How many bushels would you like to sell? "
+                        ""
+                        ""))
+
+    if sold_wheat <= wheat_inv:
+        wheat_inv -= sold_wheat
+        cash += (sold_wheat * wheat_price)
+        print ("After selling the wheat, you are left with $%s and %s bushels of wheat.") % (cash, wheat_inv)
+
+    else:
+        print ("""Muddy Waters said, 'you can't lose what you never had.'
+        Though in this case it's more like you can't sell what you never owned.""")
+        wheat_sell()
+
+
+
+
+
+# barley sell
+def barley_sell():
+    global cash
+    global barley_inv
+    global sold_barley
+    print ("You have"), barley_inv, ("bushels of barley available to sell.")
+    sold_barley = int(raw_input("How many bushels would you like to sell? "
+                        ""
+                        ""))
+
+    if sold_barley <= barley_inv:
+        barley_inv -= sold_barley
+        cash += (sold_barley * barley_price)
+        print ("After selling the barley, you are left with $%s and %s bushels of barley.") % (cash, barley_inv)
+
+
+    else:
+        print ("""Muddy Waters said, 'you can't lose what you never had.'
+        Though in this case it's more like you can't sell what you never owned.""")
+        barley_sell()
+
+
+
+# coffee sell
+def coffee_sell():
+    global cash
+    global coffee_inv
+    global sold_coffee
+    print ("You have"), coffee_inv, ("bushels of coffee available to sell.")
+    sold_coffee = int(raw_input("How many bushels would you like to sell? "
+                        ""
+                        ""))
+
+    if sold_coffee <= coffee_inv:
+        coffee_inv -= sold_coffee
+        cash += (sold_coffee * coffee_price)
+        print ("After selling the coffee, you are left with $%s and %s bushels of coffee.") % (cash, coffee_inv)
+
+
+    else:
+        print ("""Muddy Waters said, 'you can't lose what you never had.'
+        Though in this case it's more like you can't sell what you never owned.""")
+        coffee_sell()
+
+
+
+
+
+
+
+
+
+
+
 
 
 #Option 5: Check inventory
 def check_inv():
-    print ("You currently have"), flax_inv, ("bushels of flax.")
+    print ("Flax:"), flax_inv, ("bushels")
+    print ("Oats:"), oat_inv, ("bushels")
+    print ("Wheat:"), wheat_inv, ("bushels")
+    print ("Barley:"), barley_inv, ("bushels")
+    print ("Coffee:"), coffee_inv, ("bushels")
+    print ("")
     print ("You currently have $"), cash,(".")
     space()
     main_menu()
